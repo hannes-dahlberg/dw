@@ -1,0 +1,30 @@
+Uploading content with AJAX
+	This can be used on links (a), spans, labels and forms. In order to trigger this they need to have the class "dw-ajax" specified on it
+	
+	Link
+		Using a link (a), span or label these tags can be used
+			- data-dw-target-form - Specifies a form to submit to request. All user-input fields values will be submitted (like you are clicking the submit button)
+			- data-dw-target-ids - Comma seperated list of element ids to update with fetch content. If form is specified and input field name="dw_target_ids" exists in that form data-dw-target-ids will be override.
+			- data-dw-action - If using label or span use this to specify url for fetch. When using link (a), you need to use href
+			-data-dw-method - What method to post data with, get or post (default get). Gets override if form is specified and have method set
+	
+	Form
+		Declare a form as usual, only add the input field with name="dw_target_ids" and set the value to a seperated list of all the element ID's you want to update
+		URL and method is all taken care of with action and method for the form.
+	
+	Events
+		For each element that is updated an event handler can be registered. Simply add a function to the array dw.ajax_before_request[], dw.ajax_before_response[] or dw.ajax_after_response[] in JS and use the element id as key. Example:
+		
+		dw.ajax_before_request['element_id'] = function(url, form_values){
+			//alert('sent');
+		}
+		dw.ajax_before_response['element_id'] = function(url, form_values, response){
+			//alert('got');
+		}
+		dw.ajax_after_response['element_id'] = function(url, form_values, response){
+			//alert('end');
+		}
+		
+		Each of them have their own parameters self explained. Write whatever code you want in here and it will be executed each time that element id is loaded when dw.submit_ajax is called. The name of the arrays explain in which order and when they are run during the request.
+		
+		The element ID doesn't need to exists in order for all this to work out. This is good for when you just want to do a ajax request and fetch the result using any of the event handler functions. You can even create hidden elements and call the dw.submit_ajax(element) and all will work out as well. As long as the element has the required standards set as explained above.
