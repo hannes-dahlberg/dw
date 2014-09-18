@@ -5,7 +5,14 @@ class Invoke {
 	static public $php = [
 		'class.GetSet.php.inc',
 		'class.Core.php.inc',
-		'class.MySQL.php.inc'
+		'class.Ban.php.inc',
+		'class.Error.php.inc',
+		'class.Group.php.inc',
+		'class.Groups.php.inc',
+		'class.MySQL.php.inc',
+		'class.User.php.inc',
+		'class.Users.php.inc',
+		'class.Validate.php.inc'
 	];
 	static private $js = [
 		'dw.js'
